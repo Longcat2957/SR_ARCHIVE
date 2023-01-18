@@ -293,7 +293,7 @@ class HPINET(nn.Module):
         self.last_conv = nn.Conv2d(self.dim, 3, 3, 1, 1)
         self.lrelu = nn.LeakyReLU(negative_slope=0.1, inplace=True)
 
-    def forward(self, x, target=None):
+    def forward(self, x):
         """Forward function.
         In traning mode, 'target' should be provided for loss calculation.
         Args:
@@ -318,11 +318,8 @@ class HPINET(nn.Module):
             out = self.lrelu(self.pixel_shuffle(self.upconv(x)))
         out = base + self.last_conv(out)
         out = out[..., :h * self.upscale, :w * self.upscale]
-        if self.training:
-            loss = F.l1_loss(out, target)
-            return loss
-        else:
-            return out
+
+        return out
 
     def __repr__(self):
         num_parameters = sum(map(lambda x: x.numel(), self.parameters()))

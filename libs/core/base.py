@@ -156,7 +156,7 @@ def test(model:nn.Module,
         
     model = model.to(DEVICE)
     model = model.eval()
-    test_bar = tqdm(test_loader, ncols=100, leave=True)
+    test_bar = test_loader
     
     iteration = 0
 
