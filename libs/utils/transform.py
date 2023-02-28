@@ -55,12 +55,14 @@ class ComplexDataAugmentation(object):
             lr_transform = A.Compose([
                 A.AdvancedBlur(p=0.5),
                 A.Downscale(scale_min=0.7, scale_max=0.95, p=0.5, interpolation=cv2.INTER_CUBIC),
+                # A.OneOf([A.GaussNoise(), A.ISONoise()], p=0.5),
                 A.OneOf([A.GaussNoise(), A.ISONoise()], p=0.5),
-                A.ImageCompression(quality_lower=60, quality_upper=100, p=0.5),
+                A.ImageCompression(quality_lower=80, quality_upper=100, p=0.5),
                 A.AdvancedBlur(p=0.5),
                 A.Resize(height=self.lr_size[0], width=self.lr_size[1], interpolation=cv2.INTER_CUBIC),
+                # A.OneOf([A.GaussNoise(), A.ISONoise()], p=0.5),
                 A.OneOf([A.GaussNoise(), A.ISONoise()], p=0.5),
-                A.ImageCompression(quality_lower=60, quality_upper=100, p=0.5)
+                A.ImageCompression(quality_lower=80, quality_upper=100, p=0.5)
             ])
 
         else:

@@ -38,7 +38,4 @@ if __name__ == '__main__':
         sr = net(lr_tensor).detach()
         
     sr_np = sisr_postprocess(sr)
-    cv2.imshow('Single Image Super Resolution', sr_np)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()    
-    
+    cv2.imwrite('sr_output.png', sr_np)

@@ -52,10 +52,10 @@ if __name__ == '__main__':
         TAG += 'baseline'
     
     if opt.weights is not None:
-        net = load_model(net, opt.weight)
+        net = load_model(net, opt.weights)
         
-    optimizer = torch.optim.Adam(net.parameters(), lr=5e-4)
-    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 50, gamma=0.5)
+    optimizer = torch.optim.Adam(net.parameters(), lr=1e-3)
+    lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 50, gamma=0.2)
     criterion = torch.nn.L1Loss()
     
     if opt.complex_da:
